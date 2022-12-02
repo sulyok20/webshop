@@ -1,0 +1,32 @@
+{
+    "products": [
+        {
+            "id": "idGen()",
+            "name": "Áru 1",
+            "price": 1500,
+            "quantity": 97,
+            "isInStock": true
+        },
+        {
+            "id": "idGen()",
+            "name": "Áru 2",
+            "price": 2500,
+            "quantity": 15,
+            "isInStock": true
+        },
+        {
+            "id": "idGen()",
+            "name": "Áru 3",
+            "price": 3500,
+            "quantity": 25,
+            "isInStock": false
+        },
+        {
+            "id": "idGen()",
+            "name": "Áru 4",
+            "price": 4500,
+            "quantity": 10,
+            "isInStock": true
+        }
+    ]
+}
