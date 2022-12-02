@@ -11,41 +11,13 @@ CRUD műveletek
 
 state = {
     //Adatstruktúra
-    products: [
-        {
-            id: idGen(),
-            name: "Áru 1",
-            price: 1500,
-            quantity: 97,
-            isInStock: true
-        },
-        {
-            id: idGen(),
-            name: "Áru 2",
-            price: 2500,
-            quantity: 15,
-            isInStock: true
-        },
-        {
-            id: idGen(),
-            name: "Áru 3",
-            price: 3500,
-            quantity: 25,
-            isInStock: false
-        },
-        {
-            id: idGen(),
-            name: "Áru 4",
-            price: 4500,
-            quantity: 10,
-            isInStock: true
-        }
-    ],
+    products: [],
 
     cart: [],
-
+    url : "http://localhost:3000/products",
     event: "read", //milyen állapotban van: read, delete, update, create
-    currentId: null //Update esetén itt tároljuk a módosítandó product id-jét
+    currentId: null, //Update esetén itt tároljuk a módosítandó product id-jét
+    order: false
 }
 
 //#region Segéd függvények
@@ -97,7 +69,8 @@ document.getElementById("save-product").onclick = function(event){
     //Hozzájutás az adatokhoz
     let name = document.getElementById("name").value;
     let price = +document.getElementById("price").value;
-    let isInStock = document.getElementById("isInStock").checked;
+    let quantity = +document.getElementById("quantity").value;
+    let type = document.getElementById("type").value;
 
     //validálás
     let errorList = [];
@@ -132,7 +105,8 @@ document.getElementById("save-product").onclick = function(event){
         id: id,
         name: name,
         price: price,
-        isInStock: isInStock
+        quantity: quantity,
+        type: type
     }
 
     if (state.event == "create" ) {
@@ -149,6 +123,8 @@ document.getElementById("save-product").onclick = function(event){
     //mezők ürítése
     document.getElementById("name").value = null;
     document.getElementById("price").value = null;
+    document.getElementById("quantity").value = null;
+    document.getElementById("type").value = null;
 }
 
 //Kosár megmutatása
@@ -249,7 +225,16 @@ function cardBoxView(){
 }
 
 
-    
+function renderTable (){
+    state.event = "read";
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => state.products = data)
+    renderProducts(data)
+}
+
+
+
 
 //Read: product lista
 function renderProducts(){
@@ -265,6 +250,7 @@ function renderProducts(){
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">Termék ár: ${product.price} Ft</p>
                     <p class="card-text">Raktáron: ${product.quantity} db</p>
+                    <p class="card-text">Raktáron: ${product.type} db</p>
                 </div>
 
                 <div class="d-flex flex-row m-2">
