@@ -1,32 +1,32 @@
 {
-    "products": [
-        {
-            "id": "1",
-            "name": "Áru 1",
-            "price": 1500,
-            "quantity": 97,
-            "type": "tejtermék"
-        },
-        {
-            "id": "2",
-            "name": "Áru 2",
-            "price": 2500,
-            "quantity": 15,
-            "type": "tejtermék"
-        },
-        {
-            "id": "3",
-            "name": "Áru 3",
-            "price": 3500,
-            "quantity": 25,
-            "type": "tejtermék"
-        },
-        {
-            "id": "4",
-            "name": "Áru 4",
-            "price": 4500,
-            "quantity": 10,
-            "type": "tejtermék"
-        }
-    ]
+  "products": [
+    {
+      "id": "2",
+      "name": "Áru 2",
+      "price": 2500,
+      "quantity": 15,
+      "type": "tejtermék"
+    },
+    {
+      "id": "3",
+      "name": "Áru 3",
+      "price": 3500,
+      "quantity": 25,
+      "type": "tejtermék"
+    },
+    {
+      "id": "4",
+      "name": "Áru 4",
+      "price": 4500,
+      "quantity": 10,
+      "type": "tejtermék"
+    },
+    {
+      "id": 1,
+      "name": "Áru1",
+      "quantity": 40,
+      "price": 4500,
+      "type": "tejtermék"
+    }
+  ]
 }
