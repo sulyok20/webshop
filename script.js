@@ -63,69 +63,119 @@ document.getElementById("new-product").onclick = function (id) {
 };
 
 //Save: Mentés gomb
-document.getElementById("save-product").onclick = function (event) {
-    event.preventDefault();
-
-    //Hozzájutás az adatokhoz
-    let name = document.getElementById("name").value;
-    let price = +document.getElementById("price").value;
-    let quantity = +document.getElementById("quantity").value;
-    let type = document.getElementById("type").value;
-
-    //validálás
-    let errorList = [];
-    if (!(name)) {
-        console.log("namehiba");
-        document.getElementById("name-label").classList.add("text-danger");
-        errorList.push("Name hiba");
-    } else {
-        document.getElementById("name-label").classList.remove("text-danger");
-    }
-    if (!(price)) {
-        console.log("namehiba");
-        document.getElementById("price-label").classList.add("text-danger");
-        errorList.push("Price hiba");
-    } else {
-        document.getElementById("price-label").classList.remove("text-danger");
-    }
-
-    if (errorList.length > 0) {
-        return;
-    }
-
-    //alapban generálunk
-    let id = idGen();
-    if (state.event === "update") {
-        //update: az kéne, amire kattintottunk
-        id = state.currentId;
-    }
 
 
-    let product = {
-        id: id,
-        name: name,
-        price: price,
-        quantity: quantity,
-        type: type
-    }
-
+function saveProduct() {
     if (state.event == "create") {
-        state.products.push(product);
+        let product = {
+            id: idGen(),
+            name: document.getElementById("name").value,
+            quantity: document.getElementById("quantity").value,
+            type: document.getElementById("type").value,
+            price: document.getElementById("price").value,
+        }
+        fetch(url, {
+            method: "post",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(product),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                renderProducts();
+            });
+    } else if (state.event == "update") {
+        let product = {
+            id: currentId,
+            name: document.getElementById("name").value,
+            quantity: document.getElementById("quantity").value,
+            type: document.getElementById("type").value,
+            price: document.getElementById("price").value,
+        }
+        let urlUpdate = `${state.url}/${currentIdid}`
+        fetch(urlUpdate , {
+            method: "put",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(product),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          renderProducts();
+        });
     }
-    else if (state.event = "update") {
-        let index = searchIndex(id);
-        state.products[index] = product;
-    }
-
-    renderProducts();
-    formHide()
-
-    //mezők ürítése
-    document.getElementById("name").value = null;
-    document.getElementById("price").value = null;
-    document.getElementById("quantity").value = null;
-    document.getElementById("type").value = null;
 }
+
+
+
+// document.getElementById("save-product").onclick = function (event) {
+//     event.preventDefault();
+
+//     //Hozzájutás az adatokhoz
+//     let name = document.getElementById("name").value;
+//     let price = +document.getElementById("price").value;
+//     let quantity = +document.getElementById("quantity").value;
+//     let type = document.getElementById("type").value;
+
+//     //validálás
+//     let errorList = [];
+//     if (!(name)) {
+//         console.log("namehiba");
+//         document.getElementById("name-label").classList.add("text-danger");
+//         errorList.push("Name hiba");
+//     } else {
+//         document.getElementById("name-label").classList.remove("text-danger");
+//     }
+//     if (!(price)) {
+//         console.log("namehiba");
+//         document.getElementById("price-label").classList.add("text-danger");
+//         errorList.push("Price hiba");
+//     } else {
+//         document.getElementById("price-label").classList.remove("text-danger");
+//     }
+
+//     if (errorList.length > 0) {
+//         return;
+//     }
+
+//     //alapban generálunk
+//     let id = idGen();
+//     if (state.event === "update") {
+//         //update: az kéne, amire kattintottunk
+//         id = state.currentId;
+//     }
+
+
+//     let product = {
+//         id: id,
+//         name: name,
+//         price: price,
+//         quantity: quantity,
+//         type: type
+//     }
+
+//     if (state.event == "create") {
+//         state.products.push(product);
+//     }
+//     else if (state.event = "update") {
+//         let index = searchIndex(id);
+//         state.products[index] = product;
+//     }
+
+     formHide()
+
+//     //mezők ürítése
+//     document.getElementById("name").value = null;
+//     document.getElementById("price").value = null;
+//     document.getElementById("quantity").value = null;
+//     document.getElementById("type").value = null;
+// }
 
 //Kosár megmutatása
 function cartRender() {
