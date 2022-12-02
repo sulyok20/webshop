@@ -369,19 +369,34 @@ function intoCart(id) {
 //Update: Módosít gomb függvénye
 function updateProduct(id) {
     state.event = "update"
-    state.currentId = id;
-    //kerüljenek bele az űrlapba a kártya datai
-    let index = searchIndex(id);
-    //beolvassuk az űrlapba
-    let name = state.products[index].name
-    let price = state.products[index].price
-    let isInStock = state.products[index].isInStock
-    document.getElementById("name").value = name;
-    document.getElementById("price").value = price;
-    document.getElementById("isInStock").checked = isInStock;
 
-    document.getElementById("title-update").classList.remove("d-none");
-    document.getElementById("title-new").classList.add("d-none");
+    let urlUpdate = `${state.url}/${id}`
+    fetch(urlUpdate)
+        .then((response) => response.json())
+        .then((data) => {
+            state.currentId = id;
+            document.getElementById("name").value = data.name
+            document.getElementById("quantity").value = data.quantity
+            document.getElementById("price").value = data.price
+            document.getElementById("type").value = data.type
+        })
+
+
+
+    //kerüljenek bele az űrlapba a kártya datai
+    // let index = searchIndex(id);
+    // //beolvassuk az űrlapba
+    // let name = state.products[index].name
+    // let price = state.products[index].price
+    // let quantity = state.products[index].quantity
+    // let type = state.products[index].type
+    // document.getElementById("name").value = name;
+    // document.getElementById("price").value = price;
+    // document.getElementById("quantity").value = quantity;
+    // document.getElementById("type").value = type;
+
+    // document.getElementById("title-update").classList.remove("d-none");
+    // document.getElementById("title-new").classList.add("d-none");
 
     formView();
     console.log(id);
@@ -392,14 +407,14 @@ function deleteProduct(id) {
     console.log(id);
 
     let urlDelete = `${state.url}/${id}`
-    fetch(urlDelete,{
+    fetch(urlDelete, {
         method: "delete"
     })
-    .then((response) => response.json())
-    .then((data) =>{
-        console.log(data);
-        renderProducts()
-    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            renderProducts()
+        })
 
     // state.event = "delete";
     // let index = searchIndex(id)

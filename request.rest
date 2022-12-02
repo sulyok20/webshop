@@ -9,10 +9,10 @@ post http://localhost:3000/products
 Content-Type: application/json
 
 {
-    "id": 1,
+    "id": "1",
     "name": "Áru1",
-    "quantity": 40,
-    "price": 4500,
+    "quantity": 10,
+    "price": 1500,
     "type": "tejtermék"
 }
 
