@@ -112,70 +112,9 @@ function saveProduct() {
     }
 }
 
+formHide()
 
 
-// document.getElementById("save-product").onclick = function (event) {
-//     event.preventDefault();
-
-//     //Hozzájutás az adatokhoz
-//     let name = document.getElementById("name").value;
-//     let price = +document.getElementById("price").value;
-//     let quantity = +document.getElementById("quantity").value;
-//     let type = document.getElementById("type").value;
-
-//     //validálás
-//     let errorList = [];
-//     if (!(name)) {
-//         console.log("namehiba");
-//         document.getElementById("name-label").classList.add("text-danger");
-//         errorList.push("Name hiba");
-//     } else {
-//         document.getElementById("name-label").classList.remove("text-danger");
-//     }
-//     if (!(price)) {
-//         console.log("namehiba");
-//         document.getElementById("price-label").classList.add("text-danger");
-//         errorList.push("Price hiba");
-//     } else {
-//         document.getElementById("price-label").classList.remove("text-danger");
-//     }
-
-//     if (errorList.length > 0) {
-//         return;
-//     }
-
-//     //alapban generálunk
-//     let id = idGen();
-//     if (state.event === "update") {
-//         //update: az kéne, amire kattintottunk
-//         id = state.currentId;
-//     }
-
-
-//     let product = {
-//         id: id,
-//         name: name,
-//         price: price,
-//         quantity: quantity,
-//         type: type
-//     }
-
-//     if (state.event == "create") {
-//         state.products.push(product);
-//     }
-//     else if (state.event = "update") {
-//         let index = searchIndex(id);
-//         state.products[index] = product;
-//     }
-
-     formHide()
-
-//     //mezők ürítése
-//     document.getElementById("name").value = null;
-//     document.getElementById("price").value = null;
-//     document.getElementById("quantity").value = null;
-//     document.getElementById("type").value = null;
-// }
 
 //Kosár megmutatása
 function cartRender() {
