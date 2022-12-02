@@ -101,9 +101,23 @@
             >
             <input type="number" class="form-control" id="price" />
           </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="isInStock" />
-            <label class="form-check-label" for="isInStock">Van raktáron</label>
+          <div class="mb-3">
+            <label for="price" class="form-label" id="quantity-label"
+              >A termék mennyisége:</label
+            >
+            <input type="number" class="form-control" id="price" />
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label" id="type-label"
+              >Termékfajta:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              aria-describedby="nameHelp"
+            />
+            <div id="nameHelp" class="form-text">Írd be a termék nevét</div>
           </div>
           <button type="submit" class="btn btn-primary" id="save-product">
             Mentés
