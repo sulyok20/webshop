@@ -70,12 +70,12 @@ function saveProduct() {
         let product = {
             id: idGen(),
             name: document.getElementById("name").value,
-            quantity: +document.getElementById("quantity").value,
+            quantity: document.getElementById("quantity").value,
             type: document.getElementById("type").value,
-            price: +document.getElementById("price").value,
+            price: document.getElementById("price").value,
         }
         fetch(url, {
-            method: "post",
+            method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -91,13 +91,13 @@ function saveProduct() {
         let product = {
             id: currentId,
             name: document.getElementById("name").value,
-            quantity: +document.getElementById("quantity").value,
+            quantity: document.getElementById("quantity").value,
             type: document.getElementById("type").value,
-            price: +document.getElementById("price").value,
+            price: document.getElementById("price").value,
         }
         let urlUpdate = `${state.url}/${currentId}`
         fetch(urlUpdate , {
-            method: "put",
+            method: "PUT",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
