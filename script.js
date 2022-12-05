@@ -97,7 +97,7 @@ function saveProduct() {
             price: document.getElementById("price").value,
         }
         let urlUpdate = `${state.url}/${state.currentId}`
-        fetch(urlUpdate , {
+        fetch(urlUpdate, {
             method: "PUT",
             headers: {
                 Accept: "application/json",
@@ -105,11 +105,11 @@ function saveProduct() {
             },
             body: JSON.stringify(product),
         })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          renderProducts();
-        });
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                renderProducts();
+            });
     }
 }
 
@@ -122,30 +122,41 @@ function cartRender() {
     //kosár ablak megjelenítése
     cardBoxView();
 
-    //lista előállítása
-    let cardHtml = "";
-    let total = 0
-    //végigmegyünk a kosáron (state.cart)
-    for (const product of state.cart) {
-        cardHtml += `
-        <li class="list-group-item">
-            ${product.name}, ${product.price} Ft/db, ${product.quantity}db ár: ${product.price * product.quantity} Ft
-            <button
-              type="button"
-              class="btn btn-danger btn-sm"
-              onclick="deleteFromCart('${product.id}')"
-            >
-              Törlés
-            </button>
-        </li>
-        `;
-        total += product.price * product.quantity;
-    }
 
-    //lista berkása az ul-be
-    document.getElementById("cart-list").innerHTML = cardHtml;
-    //total kiírása
-    document.getElementById("total").innerHTML = total;
+    fetch(state.url)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            state.products = data
+            state.event = "read"
+            //lista előállítása
+            let cardHtml = "";
+            let total = 0
+
+            for (const product of state.cart) {
+                cardHtml += `
+                <li class="list-group-item">
+                    ${product.name}, ${product.price} Ft/db, ${product.quantity}db ár: ${product.price * product.quantity} Ft
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-sm"
+                      onclick="deleteFromCart('${product.id}')"
+                    >
+                      Törlés
+                    </button>
+                </li>
+                `;
+                total += product.price * product.quantity;
+            }
+
+            //végigmegyünk a kosáron (state.cart)
+
+            //lista berkása az ul-be
+            document.getElementById("cart-list").innerHTML = cardHtml;
+            //total kiírása
+            document.getElementById("total").innerHTML = total;
+        })
+
 }
 
 //kosár áru mennyiség kiszámolása, és beírása
@@ -213,10 +224,6 @@ function cardBoxView() {
     document.getElementById("cart-box").classList.remove("d-none");
 
 }
-
-
-
-
 
 
 
