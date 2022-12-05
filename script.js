@@ -300,21 +300,7 @@ function renderProducts() {
 
 }
 
-function quantityInputCheck(id) {
-    //kiszedjük mi van beleírva
-    let quantity = +document.getElementById(id).value;
-    console.log("check", id, quantity);
 
-    //kiszedjük az id alpján, hogy a raktrban mennyi van belőle
-    let index = searchIndex(id);
-    let quantityProduct = state.products[index].quantity;
-    //vizsgálódás, ha többet, vagy negatívot írtunk, akkor korrigálunk
-    if (quantity < 0) {
-        document.getElementById(id).value = 1;
-    } else if (quantity > quantityProduct) {
-        document.getElementById(id).value = quantityProduct;
-    }
-}
 
 //Kosár
 //issue: nem kell az isInsStock: bevitel, és egyéb helyeken
