@@ -1,1 +1,0 @@
-git clone https://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@github.com/sulyok20/webshop.git
