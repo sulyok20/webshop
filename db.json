@@ -27,6 +27,13 @@
       "quantity": 10,
       "price": 1500,
       "type": "tejtermék"
+    },
+    {
+      "id": "lbaiw45rno05g0geud",
+      "name": "alma ",
+      "quantity": "124",
+      "type": "gyümölcs",
+      "price": "12312"
     }
   ]
 }
