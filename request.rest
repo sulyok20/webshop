@@ -9,11 +9,10 @@ post http://localhost:3000/products
 Content-Type: application/json
 
 {
-    "id": "1",
-    "name": "Áru1",
-    "quantity": 10,
-    "price": 1500,
-    "type": "tejtermék"
+    "id": 4,
+    "name": "Áru4",
+    "quantity": 40,
+    "price": 4500
 }
 
 ### delete product
