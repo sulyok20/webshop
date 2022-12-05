@@ -3,9 +3,9 @@
     {
       "id": "2",
       "name": "Áru 2",
-      "price": 2500,
-      "quantity": 15,
-      "type": "tejtermék"
+      "quantity": "10",
+      "type": "tejtermék",
+      "price": "2500"
     },
     {
       "id": "3",

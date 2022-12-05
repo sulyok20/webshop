@@ -70,11 +70,12 @@ function saveProduct() {
         let product = {
             id: idGen(),
             name: document.getElementById("name").value,
-            quantity: document.getElementById("quantity").value,
+            quantity: +document.getElementById("quantity").value,
             type: document.getElementById("type").value,
-            price: document.getElementById("price").value,
+            price: +document.getElementById("price").value,
         }
-        fetch(url, {
+        // let urlCreate = `${state.url}/${idGen()}`
+        fetch(state.url, {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -89,13 +90,13 @@ function saveProduct() {
             });
     } else if (state.event == "update") {
         let product = {
-            id: currentId,
+            id: state.currentId,
             name: document.getElementById("name").value,
             quantity: document.getElementById("quantity").value,
             type: document.getElementById("type").value,
             price: document.getElementById("price").value,
         }
-        let urlUpdate = `${state.url}/${currentId}`
+        let urlUpdate = `${state.url}/${state.currentId}`
         fetch(urlUpdate , {
             method: "PUT",
             headers: {
